@@ -1,0 +1,4 @@
+enum FlashCardSide {
+  front,
+  back,
+}

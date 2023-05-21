@@ -2,6 +2,7 @@ library customizable_flashcard;
 
 import 'dart:math' as math;
 
+import 'package:customizable_flashcard/flashcard_side_enum.dart';
 import 'package:flutter/material.dart';
 
 /// UI flash card, commonly found in language teaching to children
@@ -10,6 +11,7 @@ class FlashCard extends StatefulWidget {
   const FlashCard({
     required this.frontWidget,
     required this.backWidget,
+    required this.ontap,
     Key? key,
     this.duration = const Duration(milliseconds: 500),
     this.height = 200,
@@ -18,6 +20,7 @@ class FlashCard extends StatefulWidget {
     this.backColor,
     this.frontGradient,
     this.backGradient,
+    this.onFlip,
   }) : super(key: key);
 
   /// this is the front of the card
@@ -51,6 +54,11 @@ class FlashCard extends StatefulWidget {
   //default is no gradient
   final Gradient? backGradient;
 
+  /// callback when card is flipped
+  /// gives the current side after the flip back as param
+  final Function() ontap;
+
+  final Function(FlashCardSide side)? onFlip;
   @override
   _FlashCardState createState() => _FlashCardState();
 }
@@ -125,11 +133,11 @@ class _FlashCardState extends State<FlashCard>
           onTap: _toggleSide,
           child: AnimatedCard(
             animation: _frontAnimation,
-            child: widget.backWidget,
+            child: widget.frontWidget,
             height: widget.height,
             width: widget.width,
-            color: widget.backColor ?? Colors.white,
-            gradient: widget.backGradient,
+            color: widget.frontColor ?? Colors.white,
+            gradient: widget.frontGradient,
           ),
         ),
 
@@ -138,11 +146,11 @@ class _FlashCardState extends State<FlashCard>
           onTap: _toggleSide,
           child: AnimatedCard(
             animation: _backAnimation,
-            child: widget.frontWidget,
+            child: widget.backWidget,
             height: widget.height,
             width: widget.width,
-            color: widget.frontColor ?? Colors.white,
-            gradient: widget.frontGradient,
+            color: widget.backColor ?? Colors.white,
+            gradient: widget.backGradient,
           ),
         ),
       ],
@@ -151,12 +159,15 @@ class _FlashCardState extends State<FlashCard>
 
   /// when user onTap, It will run function
   void _toggleSide() {
+    widget.ontap.call();
     if (isFrontVisible) {
       _controller.forward();
       isFrontVisible = false;
+      widget.onFlip?.call(FlashCardSide.back);
     } else {
       _controller.reverse();
       isFrontVisible = true;
+      widget.onFlip?.call(FlashCardSide.front);
     }
   }
 }
