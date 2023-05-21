@@ -4,14 +4,15 @@ For information about how to write a good package README, see the guide for
 -->
 [![Flutter Test](https://github.com/oxelf/flutter_customizable_flashcards/actions/workflows/flutter_test.yml/badge.svg?branch=master)](https://github.com/oxelf/flutter_customizable_flashcards/actions/workflows/flutter_test.yml)
 
-This is a package that uses the [flash_card](https://pub.dev/packages/flash_card/install) as foundation and adds additional functionality to it. 
+This is a package that uses the [flash_card](https://pub.dev/packages/flash_card) as foundation and adds additional functionality to it. 
 I make this package, because the original author didnt made a new version in over 17 months so I assumed its no longer maintained. 
 
 
 # Features
 
-- change the appereance of the flashcard
-- change the animation/duration.
+- change the appereance of the flashcard(color, gradient, size)
+- ontap callback
+- onFlip callback
 
 # Getting started
 
@@ -27,6 +28,34 @@ FlashCard(
     backWidget: Text("Back"),
     )
 ```
+
+Complex Example:
+
+```dart
+FlashCard(
+    ontap: () {
+    setState(() {
+        isTapped = true;
+    });
+    },
+    onFlip: (newSide) {
+    setState(() {
+        side = newSide;
+    });
+    },
+    frontWidget: const Center(child: Text("Front")),
+    backWidget: const Center(child: Text("Back")),
+    frontGradient: const LinearGradient(
+    colors: [Colors.red, Colors.blue],
+    ),
+    backGradient: const LinearGradient(
+    colors: [Colors.red, Colors.blue],
+    )),
+``` 
+
+This code produces this result: 
+![example gif](complex_example.gif)
+
 
 # Parameter
 

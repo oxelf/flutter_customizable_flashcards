@@ -30,9 +30,9 @@ class _MainAppState extends State<MainApp> {
                       isTapped = true;
                     });
                   },
-                  onFlip: (side) {
+                  onFlip: (newSide) {
                     setState(() {
-                      side = side;
+                      side = newSide;
                     });
                   },
                   frontWidget: const Center(child: Text("Front")),

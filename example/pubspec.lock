@@ -46,10 +46,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "44c580571b6d171daa5257044eef361217c02d9a"
+      resolved-ref: c9146f8300576f1000e7a25406dd73bd74b7f01c
       url: "https://github.com/oxelf/flutter_customizable_flashcards.git"
     source: git
-    version: "0.0.1"
+    version: "0.1.0"
   fake_async:
     dependency: transitive
     description:
