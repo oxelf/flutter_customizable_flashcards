@@ -54,6 +54,7 @@ FlashCard(
 ``` 
 
 This code produces this result: 
+
 ![example gif](complex_example.gif)
 
 
@@ -77,6 +78,11 @@ This code produces this result:
 `frontGradient`: takes a gradient as a parameter to show on the front of the card. (default: null)
 
 `backGradient`: takes a gradient as a parameter to show on the back of the card. (default: null)
+
+## callbacks
+`ontap`: takes a function as a parameter to call when the card is tapped. (required)
+
+`onFlip`: takes a function as a parameter to call when the card is flipped. Returns also the current side after the flip. (default: null)
 
 # Additional information
 I appreciate every PR, so feel free to contribute.
