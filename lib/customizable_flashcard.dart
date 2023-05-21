@@ -60,10 +60,10 @@ class FlashCard extends StatefulWidget {
 
   final Function(FlashCardSide side)? onFlip;
   @override
-  _FlashCardState createState() => _FlashCardState();
+  FlashCardState createState() => FlashCardState();
 }
 
-class _FlashCardState extends State<FlashCard>
+class FlashCardState extends State<FlashCard>
     with SingleTickerProviderStateMixin {
   /// controller flip animation
   late AnimationController _controller;
@@ -133,11 +133,11 @@ class _FlashCardState extends State<FlashCard>
           onTap: _toggleSide,
           child: AnimatedCard(
             animation: _frontAnimation,
-            child: widget.frontWidget,
             height: widget.height,
             width: widget.width,
             color: widget.frontColor ?? Colors.white,
             gradient: widget.frontGradient,
+            child: widget.frontWidget,
           ),
         ),
 
@@ -146,11 +146,11 @@ class _FlashCardState extends State<FlashCard>
           onTap: _toggleSide,
           child: AnimatedCard(
             animation: _backAnimation,
-            child: widget.backWidget,
             height: widget.height,
             width: widget.width,
             color: widget.backColor ?? Colors.white,
             gradient: widget.backGradient,
+            child: widget.backWidget,
           ),
         ),
       ],
@@ -160,20 +160,20 @@ class _FlashCardState extends State<FlashCard>
   /// when user onTap, It will run function
   void _toggleSide() {
     widget.ontap.call();
+    widget.onFlip
+        ?.call((isFrontVisible) ? FlashCardSide.back : FlashCardSide.front);
     if (isFrontVisible) {
       _controller.forward();
       isFrontVisible = false;
-      widget.onFlip?.call(FlashCardSide.back);
     } else {
       _controller.reverse();
       isFrontVisible = true;
-      widget.onFlip?.call(FlashCardSide.front);
     }
   }
 }
 
 class AnimatedCard extends StatelessWidget {
-  AnimatedCard(
+  const AnimatedCard(
       {required this.child,
       required this.animation,
       required this.height,

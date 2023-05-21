@@ -1,3 +1,7 @@
-## 0.0.1
+## 0.1.0
 
-* TODO: Describe initial release.
+* Initial release
+* The package is now tested on every release
+* added ontap aswell as onFlip callbacks
+* added front/back gradients
+* added front/back color

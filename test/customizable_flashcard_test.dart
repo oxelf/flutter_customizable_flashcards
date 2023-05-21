@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:customizable_flashcard/flashcard_side_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +16,6 @@ void main() {
       ),
     );
     await tester.pumpAndSettle(const Duration(seconds: 1));
-    print("2");
     expect(find.text('What is the capital of France?'), findsOneWidget);
     expect(find.text('Paris'), findsOneWidget);
 
@@ -32,16 +29,15 @@ void main() {
   testWidgets('{ onFlip callback works and returns the right side }',
       (WidgetTester tester) async {
     FlashCardSide flashCardSide = FlashCardSide.front;
-    print("test 1");
     await tester.pumpWidget(
       MaterialApp(
         home: FlashCard(
           ontap: () {},
           onFlip: (side) {
             flashCardSide = side;
-            print(side);
           },
-          frontGradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+          frontGradient:
+              const LinearGradient(colors: [Colors.red, Colors.blue]),
           frontWidget: const Text('What is the capital of France?'),
           backWidget: const Text('Paris'),
         ),
@@ -57,14 +53,14 @@ void main() {
 
   testWidgets('{ onTap callback works }', (WidgetTester tester) async {
     bool ontapRegistered = false;
-    print("test 1");
     await tester.pumpWidget(
       MaterialApp(
         home: FlashCard(
           ontap: () {
             ontapRegistered = true;
           },
-          frontGradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+          frontGradient:
+              const LinearGradient(colors: [Colors.red, Colors.blue]),
           frontWidget: const Text('What is the capital of France?'),
           backWidget: const Text('Paris'),
         ),
@@ -77,7 +73,6 @@ void main() {
 
   testWidgets('{ width and height are applied correctly }',
       (WidgetTester tester) async {
-    print("test 1");
     await tester.pumpWidget(
       MaterialApp(
         home: LayoutBuilder(builder: (context, constraints) {
@@ -85,7 +80,8 @@ void main() {
             width: 100,
             height: 110,
             ontap: () {},
-            frontGradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+            frontGradient:
+                const LinearGradient(colors: [Colors.red, Colors.blue]),
             frontWidget: const Text('What is the capital of France?'),
             backWidget: const Text('Pari'),
           );

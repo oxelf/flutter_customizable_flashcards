@@ -6,7 +6,7 @@ For information about how to write a good package README, see the guide for
 
 This is a package that uses the [flash_card](https://pub.dev/packages/flash_card/install) as foundation and adds additional functionality to it. 
 I make this package, because the original author didnt made a new version in over 17 months so I assumed its no longer maintained. 
-This package will also have integration aswell as widget tests, they run automatically on every new version, so you never have to worry about major bugs.
+
 
 # Features
 
