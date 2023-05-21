@@ -44,9 +44,11 @@ packages:
   customizable_flashcard:
     dependency: "direct main"
     description:
-      path: "/Users/joscha/dev/customizable_flashcard/"
-      relative: false
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: "44c580571b6d171daa5257044eef361217c02d9a"
+      url: "https://github.com/oxelf/flutter_customizable_flashcards.git"
+    source: git
     version: "0.0.1"
   fake_async:
     dependency: transitive

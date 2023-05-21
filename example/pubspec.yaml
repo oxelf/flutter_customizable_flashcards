@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   customizable_flashcard:
-    path: /Users/joscha/dev/customizable_flashcard/
+    git:
+      url: https://github.com/oxelf/flutter_customizable_flashcards.git
+      ref: master
 
 dev_dependencies:
   flutter_test:
