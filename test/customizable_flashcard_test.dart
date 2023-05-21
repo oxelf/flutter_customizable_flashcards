@@ -87,7 +87,7 @@ void main() {
             ontap: () {},
             frontGradient: LinearGradient(colors: [Colors.red, Colors.blue]),
             frontWidget: const Text('What is the capital of France?'),
-            backWidget: const Text('Paris'),
+            backWidget: const Text('Pari'),
           );
         }),
       ),
