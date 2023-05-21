@@ -17,12 +17,30 @@ check how to install [here](https://pub.dev/packages/customizable_flashcard/inst
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Basic example:
 
 ```dart
-const like = 'sample';
+FlashCard(
+    frontWidget: Text("Front"),
+    backWidget: Text("Back"),
+    )
 ```
+
+## Parameter
+
+# Widgets
+`frontWidget`: takes a widget as a parameter to show on the front of the card. (required)
+`backWidget`: takes a widget as a parameter to show on the back of the card. (required)
+
+# Size
+`height`: takes a double as a parameter to set the height of the card. (default: 200)
+`width`: takes a double as a parameter to set the width of the card. (default: 200)
+
+# Styling
+`frontColor`: takes a color as a parameter to show on the front of the card. (default: Colors.white)
+`backColor`: takes a color as a parameter to show on the back of the card. (default: Colors.white)
+`frontGradient`: takes a gradient as a parameter to show on the front of the card. (default: null)
+`backGradient`: takes a gradient as a parameter to show on the back of the card. (default: null)
 
 ## Additional information
 

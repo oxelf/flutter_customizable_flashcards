@@ -7,14 +7,18 @@ import 'package:flutter/material.dart';
 /// UI flash card, commonly found in language teaching to children
 class FlashCard extends StatefulWidget {
   /// constructor: Default height 200dp, width 200dp, duration  500 milliseconds
-  const FlashCard(
-      {required this.frontWidget,
-      required this.backWidget,
-      Key? key,
-      this.duration = const Duration(milliseconds: 500),
-      this.height = 200,
-      this.width = 200})
-      : super(key: key);
+  const FlashCard({
+    required this.frontWidget,
+    required this.backWidget,
+    Key? key,
+    this.duration = const Duration(milliseconds: 500),
+    this.height = 200,
+    this.width = 200,
+    this.frontColor,
+    this.backColor,
+    this.frontGradient,
+    this.backGradient,
+  }) : super(key: key);
 
   /// this is the front of the card
   final Widget frontWidget;
@@ -30,6 +34,22 @@ class FlashCard extends StatefulWidget {
 
   /// width of card
   final double width;
+
+  //front color of the card
+  //default is Colors.white
+  final Color? frontColor;
+
+  //back color of the card
+  //default is Colors.white
+  final Color? backColor;
+
+  //front gradient of the card
+  //default is no gradient
+  final Gradient? frontGradient;
+
+  //back gradient of the card
+  //default is no gradient
+  final Gradient? backGradient;
 
   @override
   _FlashCardState createState() => _FlashCardState();
@@ -80,6 +100,14 @@ class _FlashCardState extends State<FlashCard>
         ),
       ],
     ).animate(_controller);
+    if (widget.frontColor != null && widget.frontGradient != null) {
+      throw ArgumentError('Cannot provide both a color and a gradient.\n'
+          'To have a gradient, use "gradient: LinearGradient(colors: [/* ... */])"');
+    }
+    if (widget.backColor != null && widget.backGradient != null) {
+      throw ArgumentError('Cannot provide both a color and a gradient.\n'
+          'To have a gradient, use "gradient: LinearGradient(colors: [/* ... */])"');
+    }
   }
 
   @override
@@ -92,6 +120,7 @@ class _FlashCardState extends State<FlashCard>
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        //back card
         GestureDetector(
           onTap: _toggleSide,
           child: AnimatedCard(
@@ -99,8 +128,12 @@ class _FlashCardState extends State<FlashCard>
             child: widget.backWidget,
             height: widget.height,
             width: widget.width,
+            color: widget.backColor ?? Colors.white,
+            gradient: widget.backGradient,
           ),
         ),
+
+        //front card
         GestureDetector(
           onTap: _toggleSide,
           child: AnimatedCard(
@@ -108,6 +141,8 @@ class _FlashCardState extends State<FlashCard>
             child: widget.frontWidget,
             height: widget.height,
             width: widget.width,
+            color: widget.frontColor ?? Colors.white,
+            gradient: widget.frontGradient,
           ),
         ),
       ],
@@ -132,6 +167,8 @@ class AnimatedCard extends StatelessWidget {
       required this.animation,
       required this.height,
       required this.width,
+      this.color,
+      this.gradient,
       Key? key})
       : super(key: key);
 
@@ -139,25 +176,31 @@ class AnimatedCard extends StatelessWidget {
   final Animation<double> animation;
   final double height;
   final double width;
+  final Color? color;
+  final Gradient? gradient;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: animation,
       builder: _builder,
-      child: SizedBox(
-        height: height,
-        width: width,
-        child: Card(
-            elevation: 4,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            borderOnForeground: false,
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: child,
-            )),
-      ),
+      child: Card(
+          elevation: 4,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          borderOnForeground: false,
+          child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: color,
+                gradient: gradient,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: child,
+              ))),
     );
   }
 
