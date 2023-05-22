@@ -79,6 +79,10 @@ This code produces this result:
 
 `backGradient`: takes a gradient as a parameter to show on the back of the card. (default: null)
 
+`borderRadius`: takes a border radius as a parameter to set the border radius of the card. (default: 20)
+
+`border`: takes a border as a parameter for the case you want to have a border. (default: null)
+
 ## callbacks
 `ontap`: takes a function as a parameter to call when the card is tapped. (required)
 

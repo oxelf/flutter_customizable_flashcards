@@ -1,6 +1,6 @@
 name: customizable_flashcard
-description: A highly customizable flashcard widget.
-version: 0.1.0
+description: A highly customizable flashcard widget. It allows you to use a study like flashcard that you can customize to your liking. 
+version: 0.1.3
 homepage: https://github.com/oxelf/flutter_customizable_flashcards
 
 environment:

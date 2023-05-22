@@ -46,7 +46,7 @@ void main() {
     // for (int i = 0; i < tester.allWidgets.length; i++) {
     //   print(tester.allWidgets.elementAt(i).toStringShort());
     // }
-    await tester.tap(find.byType(AnimatedCard).first);
+    await tester.tap(find.byType(AnimatedCard).first, warnIfMissed: false);
     await tester.pump();
     expect(flashCardSide == FlashCardSide.back, true);
   });
@@ -66,7 +66,7 @@ void main() {
         ),
       ),
     );
-    await tester.tap(find.byType(AnimatedCard).last);
+    await tester.tap(find.byType(AnimatedCard).last, warnIfMissed: false);
     await tester.pump();
     expect(ontapRegistered, true);
   });
